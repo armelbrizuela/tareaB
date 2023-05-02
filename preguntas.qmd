@@ -1,0 +1,153 @@
+---
+title: "Respuestas de Tarea B"
+format: 
+  html:
+    embed-resources: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+# VALOR
+
+25 puntos porcentuales de la nota final del curso.
+
+# INSTRUCCIONES GENERALES
+
+1.  Perderá 1 punto por cada día de retraso en la entrega de esta tarea hasta un máximo de 5 puntos. El primer punto se perderá si entrega la asignación después de las 13:00 del martes 16 de mayo de 2023.
+
+2.  Esta tarea se puede realizar individualmente o en parejas. Recuerde que de las 4 tareas del curso, solamente 2 se podrán realizar en parejas. Todas las tareas pueden realizarse de manera individual.
+
+3.  Esta tarea solo podrá entregarse mediante el vínculo habilitado en Mediación Virtual para la Tarea A. Si la tarea se realiza en parejas, las **dos personas deben entregarla** en Mediación Virtual. Si solamente una de las personas entrega la tarea B, ambas **perderán 1 un punto**.
+
+4.  Solamente se aceptará la entrega de un archivo .qmd.
+
+# Preguntas
+
+Antes de iniciar, lea el abstract del artículo (*article.pdf*). Posteriormente, lea las dos páginas del archivo *Explanation of data set Autistic Traits and Programming blinded.docx*.
+
+1.  Instale los siguientes paquetes antes de realizar los análisis: **readxl**, **dplyr** y **tidyr**.
+
+```{r}
+
+```
+
+2.  Active los paquetes instalados.
+
+```{r}
+
+```
+
+3.  Lea el archivo de datos con extensión .xlsx mediante `read_xlsx()` y guarde el resultado en un objeto llamado `autism`.
+
+```{r}
+
+```
+
+El objeto `autism` contiene 223 observaciones y 30 variables provenientes de un estudio publicado en Graafsma, Marinus, Robidoux, Nickels y Caruana (2022).
+
+4.  Examine la estructura general de los datos con `glimpse()`. Verifique y comente en general si todas las variables son de tipo (`dbl`). **(1 pt.)**
+
+```{r}
+ 
+```
+
+COMENTARIO **(1 pt.)**:
+
+5.  Para evitar errores en los siguientes análisis, convierta en *double* las variables `Grades_Standardised` y `Grades_Raw`. Posteriormente, elimine las observaciones con al menos un valor perdido `NA` en alguna columna con la función `drop_na()`. El mensaje de error que indica `! NAs introduced by coercion` significa que R convirtió ciertos valores inválidos en `NA`, lo cual es lo que se espera que suceda. Verifique que el objeto `autism` quede con 215 filas. **(1 pt.)**
+
+```{r}
+autism <- autism |>
+  mutate(
+    Grades_Raw = as.double(),
+    Grades_Standardised = as.double()) |>
+  drop_na()
+```
+
+6.  Estime un modelo C de un parámetro (sin predictores) y un modelo A de tres parámetros (dos predictores). Para la selección de la variable de respuesta, tome en cuenta el objetivo del estudio: "\[...\] the aim of the current study was to test whether autistic traits, when measured using the AQ, predict programming skill at the end of a programming course" (Graafsma, Marinus, Robidoux, Nickels y Caruana, 2022, p.2). En cuanto a los predictores, uno debe ser la columna con las puntuaciones del test *Autism Spectrum Quotient* (ya sean las directas o las estandarizadas) y el otro predictor puede seleccionarlo usted. **(2 pts.)**
+
+```{r}
+modeloA <-
+modeloC <-
+```
+
+7.  Calcule los SSE de cada modelo y el SSR. **(2 pts.)**
+
+```{r}
+SSE_C <- 
+SSE_A <- 
+SSR <- 
+```
+
+8.  Calcule el PRE con base en la siguiente fórmula **(1 pt.)**:
+
+$$
+PRE = \frac{SSE(C) - SSE(A)}{SSE(C)}
+$$
+
+```{r}
+PRE <- 
+```
+
+9.  Calcule el valor de la $F$ con base en la siguiente fórmula **(1 pt.)**:
+
+$$
+F = \frac{\frac{\text{PRE}}{\text{PA}-\text{PC}}}{\frac{1-\text{PRE}}{n-\text{PA}}}
+$$
+
+```{r}
+PA <- 
+PC <- 
+n <- 
+
+Fstatistic <- 
+```
+
+10. Mediante la función `anova()`, verifique que el resultado del cálculo de la $F$ es igual al resultado generado mediante la función `anova()`. Comente **explícitamente** cuál columna de las mostradas por `anova()` utilizó para corroborar el cálculo "a mano" de la $F$. **(1 pt.)**
+
+```{r}
+
+```
+
+COMENTARIO **(1 pt.)**:
+
+11. Comente cómo se interpreta el valor p asociado al estadístico de prueba $F$. Este valor se encuentra en la última columna del output generado por `anova()`.
+
+COMENTARIO **(1 pt.)**:
+
+12. Muestre y comente las estimaciones o coeficientes de regresión del modelo A. El comentario debe incluir cómo se interpreta cada coeficiente (incluido el intercepto) según lo visto en clase, p.ej., cuando X aumenta en 1 unidad, Y aumenta en 10 unidades manteniendo constante Z. **(1 pt.)**
+
+```{r}
+
+```
+
+COMENTARIO **(1 pt.)**:
+
+13. Muestre los intervalos de confianza del modelo A y comente cuáles cuáles intervalos incluyen el 0. Si ningún intervalo incluye el 0, indíquelo también. **(1 pt.)**
+
+```{r}
+
+```
+
+COMENTARIO **(1 pt.)**:
+
+14. Muestre y comente el **R cuadrado** del modelo A. **(1 pt.)**
+
+```{r}
+R2 <- 
+
+```
+
+COMENTARIO **(1 pt.)**:
+
+15. Grafique los residuos del modelo A y comente si son (aproximadamente) normales. **(1 pt.)**
+
+```{r}
+
+```
+
+COMENTARIO **(1 pt.)**:
+
+# Referencia
+
+Graafsma, I. L., Marinus, E., Robidoux, S., Nickels, L., & Caruana, N. (2022). No evidence that autistic traits predict programming learning outcomes. *Computers in Human Behavior Reports*, *7*, 100215.
