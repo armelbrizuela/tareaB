@@ -1,5 +1,5 @@
 ---
-title: "Respuestas de Tarea B"
+title: "Tarea B"
 format: 
   html:
     embed-resources: true
