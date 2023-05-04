@@ -71,7 +71,7 @@ modeloA <-
 modeloC <-
 ```
 
-7.  Calcule los SSE de cada modelo y el SSR. **(2 pts.)**
+7.  Calcule los SSE de cada modelo y el SSR. **(1 pt.)**
 
 ```{r}
 SSE_C <- 
@@ -147,6 +147,10 @@ COMENTARIO **(1 pt.)**:
 ```
 
 COMENTARIO **(1 pt.)**:
+
+16. Comente qué son las interacciones en un modelo de regresión lineal múltiple y para qué sirven. Dé un ejemplo de un estudio (real o ficticio) que incluya al menos una interacción. Para el ejemplo, los nombres de la variable de respuesta y de los predictores no deben ser génericos ("X", "Y", "Z", "variable 1", "variable 2", "variable 3", etc.), sino que deben reflejar variables de interés sustantivo ("extraversión", "inteligencia", "depresión", etc.).
+
+RESPUESTA **(1.pt.)**:
 
 # Referencia
 
